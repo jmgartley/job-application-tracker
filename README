@@ -1,9 +1,22 @@
 # Job Application Tracker (CLI)
 
-A simple command-line tool to track job applications.  Add, View, and Persist Data between sessions.
+A simple command-line tool to track job applications - add, view, update, delete, and filter entries, with data saved between sessions.
+
+## Features
+- Add new job applications (company, role, status)
+- View all applications in a numbered list
+- Update an application's status
+- Delete an application (with confirmation)
+- Filter applications by status
+- Data persists automatically to a local JSON file
 
 ## Usage
-Run 'Python3 tracker.py' and follow the menu prompts.
+Run `python3 tracker.py` and follow the menu prompts.
 
 ## Built with
-Python (json module for data persistence)
+Python (json module for data persistence)   
+
+## Future improvements
+- Command-line arguments (e.g. `tracker.py add --company Google`) instead of a menu
+- Sorting applications by date applied
+- Filtering by company
