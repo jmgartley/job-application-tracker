@@ -33,6 +33,14 @@ def delete_application(index):
     else:
         print("Invalid Application Number")
 
+def filter_by_status(status):
+    matches = [app for app in applications if status.lower() == app["status"].lower()]
+    if matches:
+        for index, app in enumerate(matches):
+            print(f"{index+1}. {app['company']} - {app['role']} - {app['status']}")
+    else:
+        print(f"No applications found with status '{status}'")
+
 applications = load_applications()
 
 while(True):
@@ -40,7 +48,8 @@ while(True):
     print("2. View Applications")
     print("3. Update Status")
     print("4. Delete Application")
-    print("5. Quit")
+    print("5. Filter by Status")
+    print("6. Quit")
     choice = input("Choose an Option: ")
 
     if choice == '1':
@@ -65,6 +74,9 @@ while(True):
         else:
             print("Action Cancelled.")
     elif choice == '5':
+        status = input("Filter by which status? ")
+        filter_by_status(status)
+    elif choice == '6':
         break
     else:
         print("Invalid Choice, Try Again")
