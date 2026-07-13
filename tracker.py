@@ -1,17 +1,33 @@
 import json
 
-def add_application(company, role, status) -> None:
+def add_application(company, role, status):
+    """
+    Add a new application to the list.
+    
+    Parameters:
+        company (str): Company Name
+        role (str): Job Title
+        status (str): Application status
+    """
     applications.append({"company": company, "role": role, "status": status})
 
 def print_applications():
+    """Print all applications in the list."""
     for index, app in enumerate(applications):
         print(f"{index+1}. {app['company']} - {app['role']} - {app['status']}")
 
 def save_applications():
+    """Saves the list to JSON file titled 'applications.json'."""
     with open("applications.json", "w") as file:
         json.dump(applications, file)
 
 def load_applications():
+    """
+    Loads 'applications.json'.
+    
+    Returns:
+        list: the list of applications, or an empty list if the file doesn't exist or is corrupted.
+    """
     try:
         with open("applications.json", "r") as file:
             return json.load(file)
@@ -22,6 +38,13 @@ def load_applications():
         return []
 
 def update_status(index, status):
+    """
+    Updates the status of chosen application.
+    
+    Parameters:
+        index (int): the index of chosen application in list
+        status (str): new status to be applied
+    """
     if 0 <= index < len(applications):
         applications[index]["status"] = status
         save_applications()
@@ -29,6 +52,12 @@ def update_status(index, status):
         print("Invalid Application Number")
 
 def delete_application(index):
+    """
+    Deletes the chosen application.
+    
+    Parameters:
+        index (int): the index of chosen application in list
+    """
     if 0 <= index < len(applications):
         removed = applications.pop(index)
         print(f"Removed {removed['company']} - {removed['role']}")
@@ -37,6 +66,12 @@ def delete_application(index):
         print("Invalid Application Number")
 
 def filter_by_status(status):
+    """
+    Prints all applications with a given status.
+    
+    Parameters:
+        status (str): status to be filtered upon
+    """
     matches = [app for app in applications if status.lower() == app["status"].lower()]
     if matches:
         for index, app in enumerate(matches):
