@@ -17,6 +17,9 @@ def load_applications():
             return json.load(file)
     except FileNotFoundError:
         return []
+    except json.JSONDecodeError:
+        print("Error loading JSON file. Starting with empty list.")
+        return []
 
 def update_status(index, status):
     if 0 <= index < len(applications):
@@ -63,16 +66,22 @@ while(True):
     elif choice == '3':
         print_applications()
         num = input("Which application would you like to update? ")
-        new_status = input("New Status: ")
-        update_status(int(num) - 1, new_status)
+        try:
+            new_status = input("New Status: ")
+            update_status(int(num) - 1, new_status)
+        except ValueError:
+            print("Please enter a number.")
     elif choice == '4':
         print_applications()
         num = input("Which application would you like to delete? ")
-        confirm = input(f"Are you sure you want to delete #{num}? (y/n): ")
-        if confirm.lower() == "y":
-            delete_application(int(num) - 1)
-        else:
-            print("Action Cancelled.")
+        try:
+            confirm = input(f"Are you sure you want to delete #{num}? (y/n): ")
+            if confirm.lower() == "y":
+                delete_application(int(num) - 1)
+            else:
+                print("Action Cancelled.")
+        except ValueError:
+            print("Please enter a number.")
     elif choice == '5':
         status = input("Filter by which status? ")
         filter_by_status(status)
