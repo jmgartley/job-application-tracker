@@ -11,7 +11,7 @@ A simple command-line tool to track job applications - add, view, update, delete
 - Data persists automatically to a local JSON file
 
 ## Usage
-Run `python3 tracker.py` and follow the menu prompts.
+Run `python3 tracker_cli.py` and follow the menu prompts.
 
 ## Built with
 Python (json module for data persistence)   
